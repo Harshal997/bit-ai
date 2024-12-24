@@ -1,0 +1,50 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(200,200,200,0.5);
+    padding: 0.5em 1em 1em 1em;
+}
+
+.feedback-container input {
+    height: 10em;
+    font-family: "Ubuntu";
+    font-size: 19px;
+    border-radius: 10px;
+}
+
+.feedback-container button {
+    border: none;
+    width: 8em;
+    align-self: flex-end;
+    margin-top: 1em;
+    padding: 0.6em 0em;
+    font-family: "Ubuntu";
+    font-size: 20px;
+    background-color: #D7C7F4;
+}
+
+.feedback-container button:hover {
+    cursor: pointer;
+}
+
+.feedback-heading {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+    font-family: "Ubuntu";
+}
+
+.feedback-heading h5 {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 1em;
+}
+
+.feedback-heading-close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

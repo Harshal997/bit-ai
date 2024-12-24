@@ -1,0 +1,23 @@
+.chats-container {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    width: 70%;
+    border-radius: 20px;
+    padding: 14px 1em;
+    font-family: "Ubuntu";
+    align-items: center;
+    column-gap: 16px;
+    background-color: #D7C7F421;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(200,200,200,0.5);
+}
+
+.message-container p, h4{
+    margin-bottom: 0;
+}
+
+.time {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #0000009E;
+    font-size: 12px;
+}

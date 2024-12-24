@@ -1,0 +1,92 @@
+.container {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
+
+.container > h1:first-of-type {
+  color: #9785BA;
+  font-family: "Ubuntu";
+  margin-left: 3em;
+}
+
+.heading {
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  margin-top: 11em;
+  font-family: "Ubuntu";
+}
+
+.heading h1 {
+  font-weight: 500;
+}
+
+.prompts-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.input-query {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+  gap: 1em;
+}
+
+.input-query button {
+  background-color: #d7c7f4;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 5px;
+  font-size: 21px;
+  font-family: "Ubuntu";
+}
+
+.input-query button:hover {
+  cursor: pointer;
+}
+
+.input {
+  width: 50rem;
+  padding: 1em;
+}
+
+.chats {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.feedback {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+@media screen and (max-width: 1080px) {
+  .prompts-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1em;
+    width: max-content;
+    margin: 0 auto;
+  }
+  .input {
+    width: "100%";
+    padding: 1em;
+  }
+}
