@@ -7,7 +7,11 @@
 .container > h1:first-of-type {
   color: #9785BA;
   font-family: "Ubuntu";
-  margin-left: 3em;
+  margin-left: 7em;
+}
+
+.container > h1:first-of-type:hover {
+  cursor: pointer;
 }
 
 .heading {

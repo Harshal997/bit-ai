@@ -1,0 +1,12 @@
+.history-container {
+    margin-left: 15em;
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 2em;
+}
+
+.history-container h3 {
+    font-family: "Ubuntu";
+    font-size: 20px;
+    font-weight: 400;
+}

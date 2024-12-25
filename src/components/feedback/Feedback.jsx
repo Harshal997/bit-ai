@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./feedback.css";
 import { MdClose, MdFeedback } from "react-icons/md";
 
-const Feedback = ({visible, setVisible}) => {
-    const [value, setValue] = useState("");
+const Feedback = ({ visible, setVisible, setReview }) => {
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    setReview(value);
+  }, [value]);
+
   return (
     <div className="feedback-container">
       <div className="feedback-heading-close">
@@ -23,7 +28,12 @@ const Feedback = ({visible, setVisible}) => {
           onClick={() => setVisible(false)}
         />
       </div>
-      <input name="feedback" id="" value={value} onChange={(e) => setValue(e.target.value)}></input>
+      <input
+        name="feedback"
+        id=""
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      ></input>
       <button>Submit</button>
     </div>
   );

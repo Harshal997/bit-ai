@@ -6,8 +6,7 @@ import thumbs_up from "../../assets/thumbs-up.png";
 import thumbs_down from "../../assets/thumbs-down.png";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
-const Chats = ({ chat, visible, setVisible }) => {
-  console.log("data", chat);
+const Chats = ({ chat, visible, setVisible, showHistory, review, chats }) => {
   return (
     <div className="chats-container">
       <img
@@ -29,8 +28,22 @@ const Chats = ({ chat, visible, setVisible }) => {
               marginTop: "1em",
             }}
           >
-            <img onClick={() => setVisible(true)} style={{cursor: 'pointer'}} src={thumbs_up} alt="thumbs-up" height={15} width={15} />
-            <img onClick={() => setVisible(true)} style={{cursor: 'pointer'}} src={thumbs_down} alt="thumbs-down" height={15} width={15} />
+            <img
+              onClick={() => setVisible(true)}
+              style={{ cursor: "pointer" }}
+              src={thumbs_up}
+              alt="thumbs-up"
+              height={15}
+              width={15}
+            />
+            <img
+              onClick={() => setVisible(true)}
+              style={{ cursor: "pointer" }}
+              src={thumbs_down}
+              alt="thumbs-down"
+              height={15}
+              width={15}
+            />
           </div>
         )}
       </div>

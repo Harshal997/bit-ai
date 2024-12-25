@@ -6,6 +6,7 @@ import Chats from "../chats/Chats";
 import data from "../../data.json";
 import Feedback from "../feedback/Feedback";
 import Nav from "../nav/Nav";
+import ChatHistory from "../chat-history/ChatHistory";
 
 const prompts = [
   "Hi, what is the weather",
@@ -14,23 +15,36 @@ const prompts = [
   "Hi, how are you",
 ];
 
-const handleSave = (chats) => {
+export const handleSave = (chats) => {
   if (chats.length === 0) {
     alert("Please start a conversation to save!");
     return;
   }
   const data = localStorage.getItem("chats");
   const storedConversations = data ? JSON.parse(data) : [];
-  const newStoredData = [...storedConversations, ...chats];
+
+  const newConversation = {
+    date: new Date().toISOString(),
+    chats: chats,
+  };
+
+  const newStoredData = [...storedConversations, newConversation];
   localStorage.setItem("chats", JSON.stringify(newStoredData));
   alert("Saved Successfully!");
 };
 
-export const handleAsk = (setChats, setHasAsked, setPrompt, prompt) => {
+export const handleAsk = (
+  setChats,
+  setHasAsked,
+  setPrompt,
+  setShowHistory,
+  prompt
+) => {
   if (prompt === "") {
     alert("Please type something!");
     return;
   }
+  setShowHistory(false);
   console.log(prompt);
   setChats((prevChats) => [
     ...prevChats,
@@ -64,26 +78,37 @@ const Home = () => {
   const [chats, setChats] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [hasAsked, setHasAsked] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
-
+  const [review, setReview] = useState("");
+  const history = localStorage.getItem("chats")
+    ? JSON.parse(localStorage.getItem("chats"))
+    : [];
+  console.log("hustiey", history);
   return (
-    <div>
-      <Nav />
+    <div style={{}}>
+      <Nav
+        setChats={setChats}
+        setShowHistory={setShowHistory}
+        setHasAsked={setHasAsked}
+      />
       <div className="container">
         {feedbackVisible && (
           <div className="feedback">
             <Feedback
               visible={feedbackVisible}
               setVisible={setFeedbackVisible}
+              chats={chats}
+              setReview={setReview}
             />
           </div>
         )}
-        <h1>Bot AI</h1>
+        <h1 onClick={() => setHasAsked(false)}>Bot AI</h1>
         {!hasAsked ? (
           <>
             <div className="heading">
               <h1>How Can I Help You Today</h1>
-              <img src={logo} alt="" />
+              <img src={logo} alt="logo" />
             </div>
             <div className="prompts-container">
               {prompts &&
@@ -93,13 +118,14 @@ const Home = () => {
                     setChats={setChats}
                     setPrompt={setPrompt}
                     setHasAsked={setHasAsked}
+                    setShowHistory={setShowHistory}
                     key={index}
                     prompt={prompt}
                   /> // setChats, setHasAsked, setPrompt, prompt
                 ))}
             </div>
           </>
-        ) : (
+        ) : !showHistory ? (
           <div className="chats">
             {chats &&
               chats.length &&
@@ -109,9 +135,21 @@ const Home = () => {
                   chat={chat}
                   visible={feedbackVisible}
                   setVisible={setFeedbackVisible}
+                  showHistory={showHistory}
+                  chats={chats}
+                  review={review}
                 />
               ))}
           </div>
+        ) : (
+          <ChatHistory
+            history={history}
+            visible={feedbackVisible}
+            setVisible={setFeedbackVisible}
+            showHistory={showHistory}
+            chats={chats}
+            review={review}
+          />
         )}
         <div className="input-query">
           <input
@@ -121,7 +159,15 @@ const Home = () => {
             onChange={(e) => setPrompt(e.target.value)}
           />
           <button
-            onClick={() => handleAsk(setChats, setHasAsked, setPrompt, prompt)}
+            onClick={() =>
+              handleAsk(
+                setChats,
+                setHasAsked,
+                setPrompt,
+                setShowHistory,
+                prompt
+              )
+            }
           >
             Ask
           </button>
