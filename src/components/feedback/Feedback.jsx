@@ -2,7 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./feedback.css";
 import { MdClose, MdFeedback } from "react-icons/md";
 
-const Feedback = ({ visible, setVisible, setReview }) => {
+export const handleSubmit = (id, chats, review, setVisible) => {
+  console.log(id, chats, review);
+  const index = chats.findIndex((chat) => chat.id === id);
+  chats[index].review = review;
+  console.log(index);
+  setVisible(false);
+};
+
+const Feedback = ({
+  visible,
+  setVisible,
+  setReview,
+  chats,
+  chatId,
+  review,
+}) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -34,7 +49,9 @@ const Feedback = ({ visible, setVisible, setReview }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       ></input>
-      <button>Submit</button>
+      <button onClick={() => handleSubmit(chatId, chats, review, setVisible)}>
+        Submit
+      </button>
     </div>
   );
 };

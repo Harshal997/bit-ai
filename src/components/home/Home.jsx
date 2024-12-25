@@ -81,6 +81,7 @@ const Home = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [review, setReview] = useState("");
+  const [chatId, setChatId] = useState(0);
   const history = localStorage.getItem("chats")
     ? JSON.parse(localStorage.getItem("chats"))
     : [];
@@ -99,7 +100,9 @@ const Home = () => {
               visible={feedbackVisible}
               setVisible={setFeedbackVisible}
               chats={chats}
+              review={review}
               setReview={setReview}
+              chatId={chatId}
             />
           </div>
         )}
@@ -129,15 +132,17 @@ const Home = () => {
           <div className="chats">
             {chats &&
               chats.length &&
-              chats.map((chat) => (
+              chats.map((chat, index) => (
                 <Chats
                   key={chat.id}
+                  id={chat.id}
                   chat={chat}
                   visible={feedbackVisible}
                   setVisible={setFeedbackVisible}
                   showHistory={showHistory}
                   chats={chats}
                   review={review}
+                  setChatId={setChatId}
                 />
               ))}
           </div>
